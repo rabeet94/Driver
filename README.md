@@ -4,7 +4,7 @@ This repository contains the code for classifying vehicle trips based on the tel
 The code has been developed and tested on a machine running latest version of Windows 10.
 
 ## Data
-Data: https://www.aiforsea.com/safety
+https://www.aiforsea.com/safety
 
 The data consists of features; acceleration readings, gyro readings and speed etc and a binary target label for dangerous driving
 
