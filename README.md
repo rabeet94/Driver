@@ -32,6 +32,6 @@ The data consists of features; acceleration readings, gyro readings and speed et
 
 ## Code Structure
 
-- main.py -
-- prep.py - 
-- training.py
+- main.py - 
+- prep.py - functions used to transform and create features from raw data 
+- training.py - functions for creating model structure, training and testing
