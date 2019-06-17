@@ -27,3 +27,9 @@ The data consists of features; acceleration readings, gyro readings and speed et
       1. After cloning the repository, place testing data and corresponding label files in the data\\holdout folder.
       2. Run main.py providing test for the -m argument and the \\path\\to\\clonedrepository for -d argument. Example as follows
           > python main.py -m test -d C:\Users\DELL\Downloads\AIforSEA\safety
+
+## Code Structure
+
+- main.py  - the 
+- prep.py  - 
+- 
