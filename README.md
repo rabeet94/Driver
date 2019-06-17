@@ -30,8 +30,7 @@ The data consists of features; acceleration readings, gyro readings and speed et
       2. Run main.py providing test for the -m argument and the \\path\\to\\clonedrepository for -d argument. Example as follows
           > python main.py -m test -d C:\Users\DELL\Downloads\AIforSEA\safety
 
-## Code Structure
+## Code Description
 
-- main.py - 
 - prep.py - functions used to transform and create features from raw data 
 - training.py - functions for creating model structure, training and testing
