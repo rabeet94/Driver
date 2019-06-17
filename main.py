@@ -8,7 +8,7 @@ import prep
 import training
 import pandas as pd
 import argparse
-import os
+#import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m', '--mode', required = True, help = "train for training model, test for testing on holdout data")
@@ -16,7 +16,7 @@ parser.add_argument('-d', '--dir', help = "Place files in directory (Absolute Pa
 args = vars(parser.parse_args())
 
 filespath = args['dir']
-filespath = os.getcwd()
+#filespath = os.getcwd()
 
 def train(directory):
     """
