@@ -7,7 +7,6 @@ Created on Tue Jun 11 12:39:11 2019
 
 import pandas as pd
 import numpy as np
-import glob
 import os
 
 from sklearn.model_selection import train_test_split
@@ -26,7 +25,14 @@ from keras.callbacks import ModelCheckpoint
 
 from imblearn.over_sampling import SMOTE
 
-def train_model(fframe):    
+def train_model(fframe):
+    """
+    Creates model on training data
+    
+    Parameters
+    fframe: DataFrame with transformed variables
+    
+    """
     X_train, X_test, y_train, y_test = train_test_split(fframe.drop(['label', 'maxseconds'], axis = 1),
                                                         fframe['label'],
                                                         test_size = 0.2, stratify = fframe['label'])
@@ -58,7 +64,7 @@ def train_model(fframe):
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
         
         filepath = os.getcwd() + "\\models\\best_model_fold_%s.hdf5" % fold
-        filepath2 = os.getcwd() + "\\models\\final_model_fold_%s.hdf5" % fold
+#        filepath2 = os.getcwd() + "\\models\\final_model_fold_%s.hdf5" % fold
         
         es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=200)
         mc = ModelCheckpoint(filepath, monitor='val_acc', mode='max', verbose=1, save_best_only=True)
@@ -68,7 +74,7 @@ def train_model(fframe):
                   validation_data=(X_train.values[test], y_train.values[test]),
                   callbacks = [es, mc])
     
-        model.save(filepath2)
+#        model.save(filepath2)
         saved_model = load_model(filepath)
         _, train_acc = saved_model.evaluate(X_train.values[train], y_train.values[train], verbose=0)
         _, val_acc = saved_model.evaluate(X_train.values[test], y_train.values[test], verbose=0)
@@ -76,8 +82,17 @@ def train_model(fframe):
         print('Best model scores')
         print('Train: %.3f, Val: %.3f, Test: %.3f' % (train_acc, val_acc, test_acc))
         fold+=1
-    
+
+#
 def holdout_predictions(model_path, holdout_dataframe):
+    """
+    Returns prediction labels for a given test dataset
+    
+    Parameters
+    model_path: string input indicating location of HDF5 model file
+    holdout_dataframe: DataFrame containing testing data, should include labels
+    
+    """
     sc = joblib.load('standardscaler.bin')
     holdout_dataframe = holdout_dataframe.drop(['label', 'maxseconds'], axis  = 1)
     holdout_dataframe = pd.DataFrame(sc.transform(holdout_dataframe), columns = holdout_dataframe.columns)

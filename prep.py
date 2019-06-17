@@ -8,8 +8,14 @@ Created on Mon Jun 10 10:20:48 2019
 import pandas as pd
 import glob
 
-#
 def create_rawframe(raw_path):
+    """
+    Use CSV files to create dataframe for further processing.
+    
+    Parameters
+    raw_path: string input pointing towards folder containing the requisite csv files
+    
+    """
     path = raw_path
     all_files = glob.glob(path + "/*.csv")
     li = []
@@ -21,8 +27,14 @@ def create_rawframe(raw_path):
     
     return frame
 
-#
 def create_labelframe(label_path):
+    """
+    Removes bookings with duplicate labels from the dataset
+    
+    Parameters
+    label_path: string input pointing towards folder containing the requisite csv files
+    
+    """
     path = label_path
     labels = create_rawframe(raw_path = path)
     labelcounts = labels['bookingID'].value_counts()
@@ -31,8 +43,15 @@ def create_labelframe(label_path):
 
     return labels
 
-#
 def create_mergedframe(raw_path, label_path = None):
+    """
+    Combines training data with respective labels
+    
+    Parameters
+    raw_path: string input pointing towards folder containing the requisite csv files
+    label_path: 
+    
+    """
     rawdata = create_rawframe(raw_path = raw_path)
     if label_path is not None:
         labels = create_labelframe(label_path = label_path)
@@ -40,8 +59,16 @@ def create_mergedframe(raw_path, label_path = None):
         
     return rawdata
 
-#used for creating features out of initial data
-def create_featureframe(raw_path, label_path, labels = True):
+def create_featureframe(raw_path, label_path, labels = False):
+    """
+    Used for creating features out of initial data
+    
+    Parameters
+    raw_path: string input pointing towards folder containing the features csv files
+    label_path: string input pointing towards folder containing the corresponding labels
+    label: boolean indicating whether or not to include labels in created frame
+    
+    """
     merged = create_mergedframe(raw_path = raw_path, label_path = label_path)
     bidlist = merged['bookingID'].unique()
     bidframelist = []

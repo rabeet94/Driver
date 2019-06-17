@@ -19,12 +19,19 @@ filespath = args['dir']
 filespath = os.getcwd()
 
 def train(directory):
+    """
+    Creates features dataset from raw data and trains a model the transformed data
+    
+    Parameters
+    directory: string with absolute directory path of training data files
+    
+    """
     #load training data and aggregate from "time" series to regular data
-    train = prep.create_featureframe(raw_path = filespath + "\\safety\\features",
-                                     label_path = filespath + "\\safety\\labels",
+    train = prep.create_featureframe(raw_path = filespath + "\\data\\features",
+                                     label_path = filespath + "\\data\\labels",
                                      labels = True)
     
-    #export created file to csv and 
+    #export created file to csv
     train.to_csv('fframe.csv')
     train = pd.DataFrame.from_csv('fframe.csv')
     
@@ -32,9 +39,16 @@ def train(directory):
     training.train_model(train)
 
 def test(directory):
+    """
+    Creates features dataset from testing data and make prediction using existing trained model
+    
+    Parameters
+    directory: string with absolute directory path for testing data files
+    
+    """
     #load holdout set and apply same transforms / engineering to holdout set
-    holdout = prep.create_featureframe(raw_path = filespath + "\\safety\\holdout",
-                                       label_path = filespath + "\\safety\\holdout\\labels",
+    holdout = prep.create_featureframe(raw_path = filespath + "\\data\\holdout",
+                                       label_path = filespath + "\\data\\holdout\\labels",
                                        labels = True)
     
     #import 10th fold model and make predictions
