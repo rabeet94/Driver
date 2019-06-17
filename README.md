@@ -3,10 +3,12 @@
 This repository contains the code for classifying vehicle trips based on the telematics data.
 The code has been developed and tested on a machine running latest version of Windows 10.
 
-## Data and Requirements
+## Data
 Data: https://www.aiforsea.com/safety
 
 The data consists of features; acceleration readings, gyro readings and speed etc and a binary target label for dangerous driving
+
+## Requirements
 * Keras==2.2.4
 * numpy==1.16.2
 * imbalanced_learn==0.4.3
@@ -30,6 +32,6 @@ The data consists of features; acceleration readings, gyro readings and speed et
 
 ## Code Structure
 
-- main.py  - the 
-- prep.py  - 
-- 
+- main.py -
+- prep.py - 
+- training.py
