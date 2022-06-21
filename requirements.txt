@@ -1,5 +1,5 @@
 Keras==2.2.4
-numpy==1.16.2
+numpy==1.22.0
 imbalanced_learn==0.4.3
 pandas==0.24.2
 imblearn==0.0
